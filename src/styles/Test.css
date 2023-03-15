@@ -1,0 +1,15 @@
+.signleOption button{
+  border: 2px solid #2c3333;
+  margin: 3px;
+  background: rgb(182, 182, 219);
+  color: #34cbcb;
+}
+
+.select {
+  background-color: green;
+  color: white;
+}
+.wrong {
+  background-color: red;
+  color: white;
+}
