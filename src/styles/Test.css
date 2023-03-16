@@ -1,15 +1,22 @@
-.signleOption button{
-  border: 2px solid #2c3333;
+.singleOption {
   margin: 3px;
-  background: rgb(182, 182, 219);
-  color: #34cbcb;
-}
-
-.select {
-  background-color: green;
-  color: white;
+  padding: 4px;
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
 }
 .wrong {
   background-color: red;
   color: white;
+}
+.select {
+  background-color: green;
+  color: white;
+}
+
+textarea{
+  font-size: 15px;
+  border: 1px solid gray;
+  outline: none;
 }

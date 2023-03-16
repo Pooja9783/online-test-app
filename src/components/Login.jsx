@@ -8,10 +8,6 @@ import { Box, Grid, Typography, Button } from "@mui/material";
 
 export default function Login(props) {
   const navigate = useNavigate();
-  // const [category, setCategory] = useState("");
-  // const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const [getRegisterData, setGetRegisterData] = useState([]);
   const [login, setLogin] = useState({
     email: "",
     password: "",
@@ -25,31 +21,28 @@ export default function Login(props) {
     });
   };
 
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("indexedDBs"));
-    setGetRegisterData(items);
-  }, []);
-
-  console.log(getRegisterData.email === props.email);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!props.email || !login.password || !login.category) {
-      alert("Please fill the input field.");
+    const items = JSON.parse(localStorage.getItem("indexedDBs"));
+
+    if (
+      (items.email == props.email &&
+        items.password == login.password &&
+        login.category) ||
+      (props.email === "testuser@gmail.com" &&
+        login.password == "testuser@2021")
+    ) {
+      props.fetchQuestions(login.category);
+      navigate("/test");
+    } else if (
+      props.email == "" ||
+      login.password == "" ||
+      login.category == ""
+    ) {
+      alert("Please fill the input field");
     } else {
-      if (
-        getRegisterData.email == props.email ||
-        getRegisterData.password == login.password ||
-        login.category !== ""
-      ) {
-        setError(false);
-        props.fetchQuestions(login.category);
-        navigate("/test");
-      } else {
-        setError(true);
-        return;
-      }
+      alert("Your Email or Password not correct.");
     }
   };
 
@@ -71,25 +64,19 @@ export default function Login(props) {
           <img
             src={loginImage}
             alt=""
-            style={{ width: "650px", height: "100vh" }}
+            style={{ width: "650px", height: "100vh", objectFit: "cover" }}
           />
         </Grid>
         <Grid item xs={6}>
           <Box p={2} className="login-form">
-            <Typography variant="h4" color="#2c3333" textAlign="left" p={1}>
+            <Typography variant="h4" color="#2c3333"  p={1}>
               Login
             </Typography>
+<Box ml={1} >
+  <Typography variant="body2" textAlign='left'color='gray'>testuser@gmail.com</Typography>
+  <Typography variant="body2" textAlign='left' color='gray'>testuser@2021</Typography>
 
-            {error ? (
-              <Box my={2}>
-                <Typography variant="h6" bgcolor="red" color="white" py={1}>
-                  Please Fill the correct Email or Password.
-                </Typography>
-              </Box>
-            ) : (
-              ""
-            )}
-
+</Box>
             <form action="" onSubmit={(e) => handleSubmit(e)}>
               <input
                 type="email"
@@ -108,13 +95,18 @@ export default function Login(props) {
                 onClick={(e) => handleInput(e)}
                 id="category"
               >
-                {props.data.map((element, i) => {
+                <option value="">--Select Category--</option>
+                <option value="arts">Arts</option>
+                <option value="sports">Sports</option>
+                <option value="physics">Physics</option>
+                <option value="history">History</option>
+                {/* {props.data.map((element, i) => {
                   return (
                     <option key={i} value={element.category}>
                       {element.category}
                     </option>
                   );
-                })}
+                })} */}
               </select>{" "}
               <Button
                 type="submit"
@@ -130,7 +122,7 @@ export default function Login(props) {
               </Button>
             </form>
             <Box>
-              <Link to="/register">Don't have an Account ?</Link>
+              <Link to="/register">Don't have an account ?</Link>
             </Box>
           </Box>
         </Grid>

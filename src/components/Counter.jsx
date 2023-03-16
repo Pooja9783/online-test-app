@@ -11,7 +11,11 @@ export default function Counter() {
       if (seconds === 0) {
         setMintues(mintues - 1);
         setSeconds(59);
-      } 
+      }
+      if (mintues == 0) {
+        setSeconds("0");
+        setMintues("0");
+      }
     }, 1000);
 
     return () => clearInterval(interval);

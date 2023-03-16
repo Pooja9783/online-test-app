@@ -17,8 +17,9 @@ export default function Test(props) {
   const navigate = useNavigate();
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selected, setSelected] = useState(false);
-  const [textarea, setTextarea] = useState('');
+  const [selected, setSelected] = useState();
+  const [textarea, setTextarea] = useState("");
+  const [prevBtn, setPrevBtn] = useState(false);
 
   const handleAnswer = (id) => {
     if (props?.questions[currentQuestion]?.correct_option === id) {
@@ -27,29 +28,33 @@ export default function Test(props) {
     } else {
       props?.setwrongQue(props?.wrongQue + 1);
     }
+   
     setSelected(true);
   };
 
   const handleSelectedOption = (id) => {
-    if (
-      selected === id &&
-      selected === props?.questions[currentQuestion]?.correct_option
-    ) {
-      return "select";
-    } else if (
-      selected === id &&
-      selected !== props?.questions[currentQuestion]?.correct_option
-    ) {
-      return "wrong";
-    }
-    if (id == props?.questions[currentQuestion]?.correct_option) {
-      return "select";
-    }
+    // if (
+    //   selected === id
+    // ) {
+    //   return "select";
+    // } else if (
+    //   selected === id &&
+    //   selected !== props?.questions[currentQuestion]?.correct_option
+    // ) {
+    //   return "wrong";
+    // } else if (id == props?.questions[currentQuestion]?.correct_option) {
+    //   return "select";
+    // }
+    
   };
 
   const handlePrevious = () => {
     let previousQuestion = currentQuestion - 1;
     setCurrentQuestion(previousQuestion);
+    if (props?.questions?.length == 1) {
+      setPrevBtn(true);
+    }
+    setSelected(true);
   };
 
   const handleNext = () => {
@@ -141,15 +146,15 @@ export default function Test(props) {
                         my={1}
                       >
                         <Typography varinat="h5">{i + 1})</Typography>
-                        <Button
+                        <button
+                          // disabled={selected}
+                          onClick={() => handleAnswer(e.id)}
                           className={`singleOption  ${
                             selected && handleSelectedOption(e.id)
                           }`}
-                          disabled={selected}
-                          onClick={() => handleAnswer(e.id)}
                         >
                           {e.value}
-                        </Button>
+                        </button>
                       </Box>
                     );
                   })}
@@ -170,6 +175,7 @@ export default function Test(props) {
                       "&:hover": { background: "#2E4F4F" },
                       margin: "10px",
                     }}
+                    disabled={prevBtn}
                     onClick={handlePrevious}
                   >
                     Previous
@@ -210,8 +216,8 @@ export default function Test(props) {
                         type="textarea"
                         name="textarea"
                         rows="20"
-                        cols="60"
-                        onChange={(e) =>setTextarea(e.target.value)}
+                        cols="50"
+                        onChange={(e) => setTextarea(e.target.value)}
                       />
                     </Box>
                   </Box>
@@ -241,6 +247,3 @@ export default function Test(props) {
     </div>
   );
 }
-
-
-

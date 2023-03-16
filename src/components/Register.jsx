@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Box, Grid, Typography, TextField, Button } from "@mui/material";
 
 import loginImage from "../assets/login-image.avif";
@@ -32,13 +32,10 @@ export default function Register() {
         register.password !== "" &&
         register.rePassword !== ""
       ) {
-        const user =
-          localStorage.getItem("indexedDBs") &&
-          localStorage.getItem("indexedDBs").length > 0
-            ? JSON.parse(localStorage.getItem("indexedDBs"))
-            : [];
-
-        localStorage.setItem("indexedDBs", JSON.stringify([...user, register]));
+        const user = localStorage.setItem(
+          "indexedDBs",
+          JSON.stringify(register)
+        );
 
         setError(true);
         navigate("/login");
@@ -68,7 +65,7 @@ export default function Register() {
             <img
               src={loginImage}
               alt="the register page image"
-              style={{ width: "650px", height: "100vh" }}
+              style={{ width: "650px", height: "100vh", objectFit: "cover" }}
             />
           </Grid>
           <Grid item xs={6}>
@@ -109,6 +106,9 @@ export default function Register() {
                   Register
                 </Button>
               </form>
+              <Box>
+                <Link to="/login">Do have an account ?</Link>
+              </Box>
             </Box>
           </Grid>
         </Grid>
