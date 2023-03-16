@@ -44,9 +44,7 @@ export default function Test(props) {
     // } else if (id == props?.questions[currentQuestion]?.correct_option ) {
     //   return "select";
     // }
-
     // console.log(id);
-    setClickedOption(id);
   };
 
   const handlePrevious = () => {
