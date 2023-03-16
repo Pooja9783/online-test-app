@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate  } from "react-router-dom";
 
 import sampleData from "./sampleData.json";
 import Login from "./components/Login";
@@ -30,8 +30,9 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/register" element={<Register />} />
+        <Route index element={<Navigate to="/login" replace />} />
 
+          <Route path="/register" element={<Register />} />
           <Route
             path="/login"
             element={
