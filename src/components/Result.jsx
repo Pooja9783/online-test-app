@@ -60,10 +60,10 @@ export default function (props) {
             </Typography>
             <Box>
               <Typography variant="h6">
-                Total Percentage : {props.percentage} %{" "}
+              Total Score: {props.percentage} %{" "}
               </Typography>
 
-              <Typography variant="h6">Total Score : {props.score} </Typography>
+              <Typography variant="h6"> Score : {props.score} / {props.totalScore}</Typography>
               <Typography variant="h6">
                 Correct Answer : {props.correctAns}{" "}
               </Typography>

@@ -19,6 +19,7 @@ function App() {
   const [wrongQue, setwrongQue] = useState(0);
   const [scribble, setScribble] = useState("");
   const [percentage, setPercentage] = useState('');
+  const [totalScore, setTotalScore] = useState('');
 
 
 
@@ -64,6 +65,7 @@ function App() {
                 setScribble={setScribble}
                 scribble={scribble}
                 setPercentage={setPercentage}
+                setTotalScore={setTotalScore}
               />
             }
           />
@@ -82,7 +84,7 @@ function App() {
                 skipped={skipped}
                 scribble={scribble}
                 percentage={percentage}
-
+                totalScore={totalScore}
 
               />
             }

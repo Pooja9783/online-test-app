@@ -33,6 +33,12 @@ export default function Test(props) {
     setSelected(true);
   };
 
+   useEffect(()=>{
+     let countScore = props?.questions?.length;
+     props.setTotalScore(countScore*3)
+   },[])
+
+
   const handleSelectedOption = (id) => {
     // if (selected === id) {
     //   return "select";
@@ -44,7 +50,7 @@ export default function Test(props) {
     // } else if (id == props?.questions[currentQuestion]?.correct_option ) {
     //   return "select";
     // }
-    // console.log(id);
+    console.log(id);
   };
 
   const handlePrevious = () => {
@@ -71,7 +77,7 @@ export default function Test(props) {
     let res = Math.floor((+scores / +perc) * 100);
     props.setPercentage(res);
 
-    // console.log(res);
+    console.log(selected);
   };
 
   const handleSkip = () => {

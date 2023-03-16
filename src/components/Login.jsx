@@ -73,8 +73,8 @@ export default function Login(props) {
               Login
             </Typography>
 <Box ml={1} >
-  <Typography variant="body2" textAlign='left'color='gray'>testuser@gmail.com</Typography>
-  <Typography variant="body2" textAlign='left' color='gray'>testuser@2021</Typography>
+  <Typography variant="body2" textAlign='left'color='gray'>email : testuser@gmail.com</Typography>
+  <Typography variant="body2" textAlign='left' color='gray'>password : testuser@2021</Typography>
 
 </Box>
             <form action="" onSubmit={(e) => handleSubmit(e)}>
