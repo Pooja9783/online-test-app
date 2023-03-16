@@ -19,39 +19,40 @@ export default function Test(props) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selected, setSelected] = useState();
   const [textarea, setTextarea] = useState("");
-  const [prevBtn, setPrevBtn] = useState(false);
+  const [prevBtn, setPrevBtn] = useState(true);
+  const [clickedOption, setClickedOption] = useState(null);
 
   const handleAnswer = (id) => {
     if (props?.questions[currentQuestion]?.correct_option === id) {
-      props?.setScore(props?.score + 5);
+      props?.setScore(props?.score + 3);
       props?.setCorrectAns(props?.correctAns + 1);
     } else {
       props?.setwrongQue(props?.wrongQue + 1);
     }
-   
+
     setSelected(true);
   };
 
   const handleSelectedOption = (id) => {
-    // if (
-    //   selected === id
-    // ) {
+    // if (selected === id) {
     //   return "select";
     // } else if (
     //   selected === id &&
     //   selected !== props?.questions[currentQuestion]?.correct_option
     // ) {
     //   return "wrong";
-    // } else if (id == props?.questions[currentQuestion]?.correct_option) {
+    // } else if (id == props?.questions[currentQuestion]?.correct_option ) {
     //   return "select";
     // }
-    
+
+    // console.log(id);
+    setClickedOption(id);
   };
 
   const handlePrevious = () => {
     let previousQuestion = currentQuestion - 1;
     setCurrentQuestion(previousQuestion);
-    if (props?.questions?.length == 1) {
+    if (currentQuestion === 1) {
       setPrevBtn(true);
     }
     setSelected(true);
@@ -65,6 +66,14 @@ export default function Test(props) {
       navigate("/result");
     }
     setSelected(false);
+    setPrevBtn(false);
+
+    let perc = props?.questions?.length;
+    let scores = +props?.score / 3;
+    let res = Math.floor((+scores / +perc) * 100);
+    props.setPercentage(res);
+
+    // console.log(res);
   };
 
   const handleSkip = () => {
@@ -79,6 +88,10 @@ export default function Test(props) {
     } else {
       props.setScribble(textarea);
     }
+    let perc = props?.questions?.length;
+    let scores = props?.score;
+    let res = Math.floor((+scores / +perc) * 100);
+    props.setPercentage(res);
     navigate("/result");
   };
 
@@ -108,17 +121,8 @@ export default function Test(props) {
             {props.email}
           </Typography>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignContent: "center",
-            alignItems: "center",
-          }}
-          my={2}
-          mx={4}
-        >
-          <Typography variant="h6">Score : {props.score}</Typography>
+        <Box>
+          {/* <Typography variant="h6">Score : {props.score}</Typography> */}
           <Counter />
         </Box>
         <Box my={2} mx={4}>

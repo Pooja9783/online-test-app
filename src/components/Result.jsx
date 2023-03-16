@@ -59,6 +59,10 @@ export default function (props) {
               Quiz Result
             </Typography>
             <Box>
+              <Typography variant="h6">
+                Total Percentage : {props.percentage} %{" "}
+              </Typography>
+
               <Typography variant="h6">Total Score : {props.score} </Typography>
               <Typography variant="h6">
                 Correct Answer : {props.correctAns}{" "}
@@ -66,30 +70,30 @@ export default function (props) {
               <Typography variant="h6">
                 Wrong Answer : {props.wrongQue}{" "}
               </Typography>
-              <Typography variant="h6">Skipped Questions : {props.skipped} </Typography>
+              <Typography variant="h6">
+                Skipped Questions : {props.skipped}{" "}
+              </Typography>
             </Box>
-            <Box m={4} sx={{padding : "5px", border:"1px solid gray"}}>
+            <Box m={4} sx={{ padding: "5px", border: "1px solid gray" }}>
               <Typography variant="h6">Your Scribble note : </Typography>
-              <p>
-              {props.scribble}
-              </p>
+              <p>{props.scribble}</p>
             </Box>
             <Box p={4}>
-          <Button
-            variant="contained"
-            sx={{
-              background: "#2E4F4F",
-              "&:hover": { background: "#0E8388" },
-              display: "flex",
-              margin: "auto",
-              width: "200px",
-              fontSize: "20px",
-            }}
-            onClick={() => navigate("/login")}
-          >
-            Exit
-          </Button>
-        </Box>
+              <Button
+                variant="contained"
+                sx={{
+                  background: "#2E4F4F",
+                  "&:hover": { background: "#0E8388" },
+                  display: "flex",
+                  margin: "auto",
+                  width: "200px",
+                  fontSize: "20px",
+                }}
+                onClick={() => navigate("/login")}
+              >
+                Exit
+              </Button>
+            </Box>
           </Box>
         </Box>
       </Box>

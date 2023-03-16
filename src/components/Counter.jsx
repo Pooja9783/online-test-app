@@ -22,8 +22,8 @@ export default function Counter() {
   });
   return (
     <Box>
-      <Typography variant="h6">
-        Timer : {mintues < 10 ? "0" + mintues : mintues} :{" "}
+      <Typography variant="h6" textAlign='center' m={2}>
+         {mintues < 10 ? "0" + mintues : mintues} :{" "}
         {seconds < 10 ? "0" + seconds : seconds}
       </Typography>
     </Box>

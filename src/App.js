@@ -18,6 +18,9 @@ function App() {
   const [skipped, setSkipped] = useState(0);
   const [wrongQue, setwrongQue] = useState(0);
   const [scribble, setScribble] = useState("");
+  const [percentage, setPercentage] = useState('');
+
+
 
   const fetchQuestions = (category) => {
     let filterCategory = data?.filter((cate) => {
@@ -60,6 +63,7 @@ function App() {
                 skipped={skipped}
                 setScribble={setScribble}
                 scribble={scribble}
+                setPercentage={setPercentage}
               />
             }
           />
@@ -77,6 +81,8 @@ function App() {
                 wrongQue={wrongQue}
                 skipped={skipped}
                 scribble={scribble}
+                percentage={percentage}
+
 
               />
             }
