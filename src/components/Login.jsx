@@ -27,18 +27,18 @@ export default function Login(props) {
     const items = JSON.parse(localStorage.getItem("indexedDBs"));
 
     if (
-      (items.email == props.email &&
-        items.password == login.password &&
-        login.category) ||
+      (items?.email == props?.email &&
+        items?.password == login?.password &&
+        login?.category) ||
       (props.email === "testuser@gmail.com" &&
         login.password == "testuser@2021")
     ) {
       props.fetchQuestions(login.category);
       navigate("/test");
     } else if (
-      props.email == "" ||
-      login.password == "" ||
-      login.category == ""
+      props?.email == "" ||
+      login?.password == "" ||
+      login?.category == ""
     ) {
       alert("Please fill the input field");
     } else {
